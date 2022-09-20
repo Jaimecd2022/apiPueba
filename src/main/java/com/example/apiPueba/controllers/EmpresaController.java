@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.apiPueba.models.UsuarioModel;
-import com.example.apiPueba.services.UsuarioServices;
+import com.example.apiPueba.models.EmpresaModel;
+import com.example.apiPueba.services.EmpresaServices;
 
 @RestController
-@RequestMapping("/Usuario")
-public class UsuarioController {
+@RequestMapping("/Empresa")
+public class EmpresaController {
     
     @Autowired
-    UsuarioServices usuarioServices;
+    EmpresaServices empresaServices;
 
     @GetMapping()
-    public ArrayList<UsuarioModel> obtenerUsusarios(){
-        return usuarioServices.obtenerUsuarios();
+    public ArrayList<EmpresaModel> obtenerEmpresa(){
+        return empresaServices.obtenerEmpresa();
     }
 
     @PostMapping()
-    public UsuarioModel guardarUsuarios(@RequestBody UsuarioModel usuario){
-        return this.usuarioServices.guardarUsuario(usuario);
+    public EmpresaModel guardarEmpresa(@RequestBody EmpresaModel emp){
+        return this.empresaServices.guardarEmpresa(emp);
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<UsuarioModel> obtenerUsusarios(@PathVariable("id") Integer id){
-        return this.usuarioServices.obtenerPorId(id);
+    public Optional<EmpresaModel> obtenerEmpresa(@PathVariable("id") Integer id){
+        return this.empresaServices.obtenerPorId(id);
     }
 
     @DeleteMapping(path = "/{id}")
     public String eliminarPorId(@PathVariable("id") Integer id){
-        boolean ok = this.usuarioServices.eliminarUsuario(id);
+        boolean ok = this.empresaServices.eliminarEmpresa(id);
 
         if (ok) {
-            return "se elimino el usuario con id " + id;
+            return "se elimino la Empresa con id " + id;
         } else {
-            return "No se encontro el usuario con id " + id;
+            return "No se encontro la Empresa con id " + id;
         }
     }
 

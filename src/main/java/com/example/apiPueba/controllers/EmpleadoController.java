@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.apiPueba.models.UsuarioModel;
-import com.example.apiPueba.services.UsuarioServices;
+import com.example.apiPueba.models.EmpleadoModel;
+import com.example.apiPueba.services.EmpleadoServices;
 
 @RestController
-@RequestMapping("/Usuario")
-public class UsuarioController {
+@RequestMapping("/Empleado")
+public class EmpleadoController {
     
     @Autowired
-    UsuarioServices usuarioServices;
+    EmpleadoServices empleadoServices;
 
     @GetMapping()
-    public ArrayList<UsuarioModel> obtenerUsusarios(){
-        return usuarioServices.obtenerUsuarios();
+    public ArrayList<EmpleadoModel> obtenerEmpleado(){
+        return empleadoServices.obtenerEmpleado();
     }
 
     @PostMapping()
-    public UsuarioModel guardarUsuarios(@RequestBody UsuarioModel usuario){
-        return this.usuarioServices.guardarUsuario(usuario);
+    public EmpleadoModel guardarEmpleado(@RequestBody EmpleadoModel emp){
+        return this.empleadoServices.guardarEmpleado(emp);
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<UsuarioModel> obtenerUsusarios(@PathVariable("id") Integer id){
-        return this.usuarioServices.obtenerPorId(id);
+    public Optional<EmpleadoModel> obtenerEmpledao(@PathVariable("id") Integer id){
+        return this.empleadoServices.obtenerPorId(id);
     }
 
     @DeleteMapping(path = "/{id}")
     public String eliminarPorId(@PathVariable("id") Integer id){
-        boolean ok = this.usuarioServices.eliminarUsuario(id);
+        boolean ok = this.empleadoServices.eliminarEmpleado(id);
 
         if (ok) {
-            return "se elimino el usuario con id " + id;
+            return "se elimino el empleado con id " + id;
         } else {
-            return "No se encontro el usuario con id " + id;
+            return "No se encontro el empleado con id " + id;
         }
     }
 
